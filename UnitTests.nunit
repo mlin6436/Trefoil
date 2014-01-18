@@ -1,0 +1,17 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="Trefoil.Entity.Tests\bin\Debug\Trefoil.Entity.Tests.dll" />
+    <assembly path="Trefoil.Helper.Tests\bin\Debug\Trefoil.Helper.Tests.dll" />
+    <assembly path="Trefoil.Library.Tests\bin\Debug\Trefoil.Library.Tests.dll" />
+    <assembly path="Trefoil.Service.Tests\bin\Debug\Trefoil.Service.Tests.dll" />
+    <assembly path="Trefoil.Web.Tests\bin\Debug\Trefoil.Web.Tests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="Trefoil.Entity.Tests\bin\Release\Trefoil.Entity.Tests.dll" />
+    <assembly path="Trefoil.Helper.Tests\bin\Release\Trefoil.Helper.Tests.dll" />
+    <assembly path="Trefoil.Library.Tests\bin\Release\Trefoil.Library.Tests.dll" />
+    <assembly path="Trefoil.Service.Tests\bin\Release\Trefoil.Service.Tests.dll" />
+    <assembly path="Trefoil.Web.Tests\bin\Release\Trefoil.Web.Tests.dll" />
+  </Config>
+</NUnitProject>

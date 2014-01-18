@@ -22,7 +22,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CE7C75
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.targets = .nuget\NuGet.targets
+		UnitTests.nunit = UnitTests.nunit
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C434022E-EDAB-444E-B5AE-459CFA62EFF0}"
+	ProjectSection(SolutionItems) = preProject
+		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
+		GenerateBuildNumber.msbuild = GenerateBuildNumber.msbuild
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Entity.Tests", "Trefoil.Entity.Tests\Trefoil.Entity.Tests.csproj", "{AE085F0C-2724-4632-A168-A7518B30B071}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Helper.Tests", "Trefoil.Helper.Tests\Trefoil.Helper.Tests.csproj", "{4C510101-348F-47B3-AEA6-A378C386DA3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Library.Tests", "Trefoil.Library.Tests\Trefoil.Library.Tests.csproj", "{3D020843-5B42-4F97-AC97-52D125F75E97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Service.Tests", "Trefoil.Service.Tests\Trefoil.Service.Tests.csproj", "{964CC724-076D-4B33-B197-3BA1FEA64C1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Web.Tests", "Trefoil.Web.Tests\Trefoil.Web.Tests.csproj", "{D62A2D54-94AF-49A0-97A5-F376F01476CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +71,26 @@ Global
 		{0235F825-F96A-4CE7-9EFF-984949C83055}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0235F825-F96A-4CE7-9EFF-984949C83055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0235F825-F96A-4CE7-9EFF-984949C83055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE085F0C-2724-4632-A168-A7518B30B071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE085F0C-2724-4632-A168-A7518B30B071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE085F0C-2724-4632-A168-A7518B30B071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE085F0C-2724-4632-A168-A7518B30B071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C510101-348F-47B3-AEA6-A378C386DA3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C510101-348F-47B3-AEA6-A378C386DA3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C510101-348F-47B3-AEA6-A378C386DA3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C510101-348F-47B3-AEA6-A378C386DA3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D020843-5B42-4F97-AC97-52D125F75E97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D020843-5B42-4F97-AC97-52D125F75E97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D020843-5B42-4F97-AC97-52D125F75E97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D020843-5B42-4F97-AC97-52D125F75E97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964CC724-076D-4B33-B197-3BA1FEA64C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964CC724-076D-4B33-B197-3BA1FEA64C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964CC724-076D-4B33-B197-3BA1FEA64C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964CC724-076D-4B33-B197-3BA1FEA64C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62A2D54-94AF-49A0-97A5-F376F01476CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62A2D54-94AF-49A0-97A5-F376F01476CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62A2D54-94AF-49A0-97A5-F376F01476CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62A2D54-94AF-49A0-97A5-F376F01476CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
