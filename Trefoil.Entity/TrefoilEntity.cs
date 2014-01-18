@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
@@ -9,7 +11,7 @@ using Trefoil.Helper;
 
 namespace Trefoil.Entity
 {
-    public class TrefoilEntity : DbContext, IDisposable
+    public class TrefoilEntity : DbContext, ITrefoilEntity, IDisposable
     {
         public DbSet<BusinessFunction> BusinessFunction { get; set; }
         public DbSet<BusinessStatus> BusinessStatus { get; set; }
@@ -109,6 +111,31 @@ namespace Trefoil.Entity
                     // Log
                     throw exceptions;
                 }
+            }
+        }
+
+        public void Migrate(string serverName, string databaseName, string userId, string password)
+        {
+            string nameOrConnectionString = String.Format(@"Data Source={0};Initial Catalog={1};User ID={2};Password={3};Integrated Security=SSPI;", serverName, databaseName, userId, password);
+            string connectionString = String.Format("Data Source={0}; Initial Catalog={1}; Integrated Security=SSPI;", serverName, databaseName);
+            string providerInvariantName = "System.Data.SqlClient";
+
+            try
+            {
+                var configuration = new DbMigrationsConfiguration()
+                {
+                    ContextType = typeof(TrefoilEntity),
+                    MigrationsAssembly = typeof(TrefoilEntity).Assembly,
+                    AutomaticMigrationsEnabled = false,
+                    TargetDatabase = new DbConnectionInfo(connectionString, providerInvariantName), // TODO: nameOrConnectionString
+                };
+
+                var migrator = new DbMigrator(configuration);
+                migrator.Update();
+            }
+            catch (Exception ex)
+            {
+                var exception = ex.GetOriginalException();
             }
         }
 
