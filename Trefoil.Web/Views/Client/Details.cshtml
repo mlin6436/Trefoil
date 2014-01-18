@@ -1,0 +1,201 @@
+﻿@using Telerik.Web.Mvc.UI
+@model Trefoil.Web.Models.OrganisationDetailsModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2 style="text-align: left; float: left;">
+        <span class="task">Client</span>&nbsp;>
+        @*<a class="client" style="color:#ffffff; text-decoration: none;" href="@Url.Action("Index", "Client")">Client</a>&nbsp;>*@
+        #@Model.Organisation.organisationid&nbsp;@Model.Organisation.name
+    </h2>    
+</div>
+
+<style type="text/css">
+    .t-state-active, .t-header .t-state-active {
+        background: white;
+    }
+</style>
+
+<div class="body-main-left float-left">
+    @(Html.Telerik()
+        .TabStrip()
+        .Name("ClientDetailsPanel")
+        .HtmlAttributes(new { style = "padding: 10px;" })
+        .Effects(fx => fx.Expand()
+            .Opacity()
+            .OpenDuration(200)
+            .CloseDuration(300)
+        )
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+                .Text("Details")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                            @Html.Partial("_ClientDetailsPopup", Model.Organisation)
+                             <div style="width: 100%; height: 30px; padding: 0;">
+                                 <div id="client-@Model.Organisation.organisationid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Edit</div>
+                             </div>
+                             <table>
+                                 <tr>
+                                     <td style="width: 200px;">
+                                         Address Name
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_name
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td>
+                                         Address Line 1
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_line1
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td>
+                                         Address Line 2
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_line2
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td>
+                                         Address Line 3
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_line3
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td>
+                                         City
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_city
+                                     </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td>
+                                         County
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_county
+                                     </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td>
+                                         Country
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_country
+                                     </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td>
+                                         Post Code/Zip Code
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_postalcode
+                                     </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td>
+                                         Telephone
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_telephone1
+                                     </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td>
+                                         Fax
+                                     </td>
+                                     <td>
+                                         @Model.Organisation.address1_fax
+                                     </td>
+                                 </tr>
+
+                                 <tr>
+                                     <td>
+                                         Website
+                                     </td>
+                                     <td>
+                                         <a target="_blank" href="http://@Model.Organisation.website">@Model.Organisation.website</a>
+                                     </td>
+                                 </tr>
+                             </table>
+                             @Html.Partial("_NoteDetailsPopup", Model.NewNote)
+                             <div style="width: 100%; height: 30px; padding: 15px 5px 5px 0;">
+                                 <div id="note-@Model.NewNote.noteid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Note</div>
+                             </div>
+                             @foreach (var note in Model.Notes)
+                             {
+                                 <div style="padding: 0 0 5px 0;">@note.description</div>
+                             }
+                         </div>
+                     </text>);
+            tabstrip.Add()
+                .Text("Projects")
+                .Content(
+                    @<text>
+                         <div style="padding: 0 0 10px 0;">
+                             @Html.Partial("_ProjectDetailsPopup", Model.NewProject)
+                             <div style="width: 100%; height: 30px; padding: 5px 5px 5px 0;">
+                                 <div id="project-@Model.NewContact.systemuserid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Add New Project</div>
+                             </div>
+                             @Html.Partial("_ProjectList", Model.Projects)
+                         </div>
+                    </text>);
+            tabstrip.Add()
+                .Text("Tasks")
+                .Content(
+                    @<text>
+                         <div style="padding: 0 0 10px 0;">
+                             @Html.Partial("_TaskDetailsPopup", Model.NewTask)
+                             <div style="width: 100%; height: 30px; padding: 5px 5px 5px 0;">
+                                 <div id="task-@Model.NewTask.taskid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Add New Task</div>
+                             </div>
+                             @Html.Partial("_TaskList", Model.Tasks)
+                         </div>
+                    </text>);
+            tabstrip.Add()
+                .Text("Documents")
+                .Content(@<text>
+                              <div style="padding: 10px 0;">
+                              </div>
+                         </text>);
+            })
+          .SelectedIndex(ViewBag.TabIndex ?? 0)
+          )
+</div>
+
+<div class="body-main-right float-left">
+    @Html.Partial("_ContactDetailsPopup", Model.NewContact)
+    <div style="background: #fff; width: 100%; float: left;">
+        <div id="contact-@Model.NewContact.systemuserid" class="t-button" style="color: #fff; background: #4D90FE; margin: 5px; font-weight: bold; text-align: right; float: right;">Add New Contact</div>
+    </div>
+
+    @if (Model.Contacts.Any())
+    {
+        foreach (var contact in Model.Contacts)
+        {
+            <div @if (Model.Contacts.IndexOf(contact) % 2 == 0) { <text>style="background: #E5E5E5;"</text> }>
+                @Html.Partial("_ContactDetails", contact)
+                @Html.Partial("_ContactDetailsPopup", contact)
+            </div>
+        }
+    }
+</div>

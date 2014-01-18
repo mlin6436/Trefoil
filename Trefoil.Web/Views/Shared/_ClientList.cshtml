@@ -1,0 +1,74 @@
+﻿@using Telerik.Web.Mvc.UI
+@model List<Trefoil.Web.Models.OrganisationModel>
+
+@(Html.Telerik().Grid(Model)
+    .Name("ClientList")
+    .HtmlAttributes(new { style="background: white" })
+    .DataKeys(keys =>
+        keys.Add(x => x.organisationid)
+    )
+    .Columns(columns =>
+    {
+        columns.Bound(m => m.organisationid).Title("Client ID");
+        columns.Bound(m => m.name).Width(200).Title("Name");
+        columns.Bound(m => m.address1_name).Title("Address Name");
+        columns.Bound(m => m.address1_line1).Title("Address Line 1");
+        columns.Bound(m => m.address1_line2).Title("Address Line 2");
+        columns.Bound(m => m.address1_line3).Title("Address Line 3");
+        columns.Bound(m => m.website).Title("Website");
+        columns.Bound(m => m.businessstatusname).Title("Status");
+        columns.Bound(m => m.createdon).Title("Created On");
+    })
+    .ClientEvents(events => 
+        events.OnRowSelect("onRowSelectClient")
+    )
+    .Selectable()
+    .Sortable()
+    .Pageable(pageable => pageable.PageSize(25))
+    .Filterable(filterable => filterable.Enabled(true))
+)
+
+<script type="text/javascript">
+    function onRowSelectClient(e) {
+        var row = e.row;
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Content("~")" + "Client/Details",
+            data: { pid: row.cells[0].innerHTML },
+            dataType: "html",
+            success: function (response) {
+                window.location = "@Url.Content("~")" + "Client/Details?cid=" + row.cells[0].innerHTML;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                window.location = "@Url.Content("~")" + "Client/Index";
+            }
+        });
+    }
+</script>
+    
+@if (Model.Any())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ClientList th:contains(Status)")
+                .find(".t-grid-filter")
+                .click(function (e) {
+                    var filterIcon = $(this);
+
+                    var selectString = "<select>";
+                    @foreach (var element in Model.FirstOrDefault().BusinessStatusCode)
+	                {
+                        <text>selectString += "<option>@element.Text</option>";</text>
+                    }
+                    selectString += "</select>";
+                    var select = $(selectString);
+
+                    setTimeout(function () {
+                        var filterMenu = filterIcon.data("filter");
+                        filterMenu.find(":text").first().replaceWith(select);
+                    });
+                });
+        })
+    </script>
+}

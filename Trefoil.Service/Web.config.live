@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <appSettings>
+    <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+  </appSettings>
+  <connectionStrings>
+    <add name="TrefoilEntity" connectionString="Data Source=SERVER42735;Initial Catalog=Trefoil;User ID=IIS APPPOOL\Trefoil.Service;Integrated Security=SSPI;" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <customErrors mode="Off"/>
+  </system.web>
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="ServiceBehavior">
+          <serviceMetadata httpGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="true" />
+          <dataContractSerializer maxItemsInObjectGraph="2147483647" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment multipleSiteBindingsEnabled="false" />
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_TrefoilService" closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00" allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard" maxBufferSize="655360000" maxBufferPoolSize="52428800" maxReceivedMessageSize="655360000" messageEncoding="Text" textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+          <security mode="None">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm="" />
+            <message clientCredentialType="UserName" algorithmSuite="Default" />
+          </security>
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <services>
+      <service name="Trefoil.Service.TrefoilService" behaviorConfiguration="ServiceBehavior">
+        <endpoint address="http://crm.orange.com/TrefoilService.svc" binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_TrefoilService" contract="Trefoil.Library.ITrefoilService">
+          <identity>
+            <dns value="83.170.64.2" />
+          </identity>
+        </endpoint>
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+      </service>
+    </services>
+  </system.serviceModel>
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true" />
+    <!--
+        To browse web app root directory during debugging, set the value below to true.
+        Set to false before deployment to avoid disclosing web app folder information.
+      -->
+    <directoryBrowse enabled="true" />
+  </system.webServer>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+  </entityFramework>
+  <system.diagnostics>
+    <trace autoflush="true" />
+    <sources>
+      <source name="System.ServiceModel" switchValue="Information, ActivityTracing, Critical, Error, Warning">
+        <listeners>
+          <add name="traceListener" type="System.Diagnostics.XmlWriterTraceListener" initializeData="C:\Projects\Trefoil\Logs\ServiceTrace.svclog" />
+        </listeners>
+      </source>
+    </sources>
+  </system.diagnostics>
+</configuration>

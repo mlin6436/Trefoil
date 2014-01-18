@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c0611bf1-919d-4b97-8bb3-7ac758c6b9f0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Trefoil.Service/TrefoilService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TrefoilService.wsdl" MetadataType="Wsdl" ID="e1fdba47-f45c-42e9-a137-af6a98a5538c" SourceId="1" SourceUrl="http://localhost/Trefoil.Service/TrefoilService.svc?wsdl" />
+    <MetadataFile FileName="TrefoilService.disco" MetadataType="Disco" ID="28db3438-f350-49b4-9e4e-e58e59df8775" SourceId="1" SourceUrl="http://localhost/Trefoil.Service/TrefoilService.svc?disco" />
+    <MetadataFile FileName="TrefoilService.xsd" MetadataType="Schema" ID="bfe08b7e-fbd2-436a-bcb1-aaa128dc3c70" SourceId="1" SourceUrl="http://localhost/Trefoil.Service/TrefoilService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TrefoilService1.xsd" MetadataType="Schema" ID="65a8bcf3-08e6-4eda-9a9b-27c6f9f1b92a" SourceId="1" SourceUrl="http://localhost/Trefoil.Service/TrefoilService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TrefoilService2.xsd" MetadataType="Schema" ID="a405deb5-44b2-4ac7-b08a-3a4a2cb51807" SourceId="1" SourceUrl="http://localhost/Trefoil.Service/TrefoilService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

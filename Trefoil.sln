@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Entity", "Trefoil.Entity\Trefoil.Entity.csproj", "{9146DAE2-EE0F-4422-BC23-6552828C8475}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Library", "Trefoil.Library\Trefoil.Library.csproj", "{F2F224CD-62C6-4DB9-A3BB-4DBCFC01EF17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Deployment", "Trefoil.Deployment\Trefoil.Deployment.csproj", "{231A9793-343B-4A95-B18E-1DACBC806652}"
+	ProjectSection(ProjectDependencies) = postProject
+		{74B11917-5E25-428B-AF0B-0921450E4231} = {74B11917-5E25-428B-AF0B-0921450E4231}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Service", "Trefoil.Service\Trefoil.Service.csproj", "{74B11917-5E25-428B-AF0B-0921450E4231}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Helper", "Trefoil.Helper\Trefoil.Helper.csproj", "{A3254779-A82F-4866-B412-3A0003B363C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trefoil.Web", "Trefoil.Web\Trefoil.Web.csproj", "{0235F825-F96A-4CE7-9EFF-984949C83055}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CE7C75A4-DD09-4183-BD10-3303A886E2AA}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9146DAE2-EE0F-4422-BC23-6552828C8475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9146DAE2-EE0F-4422-BC23-6552828C8475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9146DAE2-EE0F-4422-BC23-6552828C8475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9146DAE2-EE0F-4422-BC23-6552828C8475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2F224CD-62C6-4DB9-A3BB-4DBCFC01EF17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F224CD-62C6-4DB9-A3BB-4DBCFC01EF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F224CD-62C6-4DB9-A3BB-4DBCFC01EF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F224CD-62C6-4DB9-A3BB-4DBCFC01EF17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{231A9793-343B-4A95-B18E-1DACBC806652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{231A9793-343B-4A95-B18E-1DACBC806652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{231A9793-343B-4A95-B18E-1DACBC806652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{231A9793-343B-4A95-B18E-1DACBC806652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B11917-5E25-428B-AF0B-0921450E4231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B11917-5E25-428B-AF0B-0921450E4231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B11917-5E25-428B-AF0B-0921450E4231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B11917-5E25-428B-AF0B-0921450E4231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3254779-A82F-4866-B412-3A0003B363C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3254779-A82F-4866-B412-3A0003B363C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3254779-A82F-4866-B412-3A0003B363C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3254779-A82F-4866-B412-3A0003B363C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0235F825-F96A-4CE7-9EFF-984949C83055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0235F825-F96A-4CE7-9EFF-984949C83055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0235F825-F96A-4CE7-9EFF-984949C83055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0235F825-F96A-4CE7-9EFF-984949C83055}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

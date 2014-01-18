@@ -1,0 +1,65 @@
+﻿@model Trefoil.Web.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+@ViewBag.Message
+
+@if (Trefoil.Web.Helpers.Extensions.GetUserCredential() != null)
+{
+    <text>
+        <div>
+            <span style="display: inline-block; vertical-align: middle;">You have already login as: @Trefoil.Web.Helpers.Extensions.GetUserCredential().fullname&nbsp;&nbsp;</span>
+        </div>
+        <span>Is it not you, or do you want to change permission to visit the system? </span>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", style = "display: inline-block; vertical-align: middle;" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="#" onclick="javascript:document.getElementById('logoutForm').submit()">Log Off</a>
+        }
+        <span>first.</span>
+    </text>
+}
+
+<section id="loginForm">
+@using (Html.BeginForm(new { ReturnUrl = (Model == null || String.IsNullOrEmpty(Model.returnurl)) ? "Home" : Model.returnurl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.emailaddress)
+                @Html.TextBoxFor(m => m.emailaddress)
+                @Html.ValidationMessageFor(m => m.emailaddress)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.password)
+                @Html.PasswordFor(m => m.password)
+                @Html.ValidationMessageFor(m => m.password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.captcha)
+                <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                @Html.TextBoxFor(m => m.captcha)
+                <span style="color:red;">@Html.ValidationMessageFor(m => m.captcha)</span>
+            </li>
+            @*<li>
+                @Html.CheckBoxFor(m => m.rememberme)
+                @Html.LabelFor(m => m.rememberme, new { @class = "checkbox" })
+            </li>*@
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+}
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

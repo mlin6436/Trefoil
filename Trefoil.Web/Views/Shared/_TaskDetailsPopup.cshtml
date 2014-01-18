@@ -1,0 +1,135 @@
+﻿@using Telerik.Web.Mvc.UI
+@model Trefoil.Web.Models.TaskModel
+
+@{  
+    Html.Telerik().Window()
+        .Name(String.Format("task-details-{0}", Model.taskid))
+        .Title("Task Details")
+        .Content(
+        @<text>
+            @using (Html.BeginForm("EditTask", "Task", FormMethod.Post, new { model = Model }))
+            {
+                @Html.HiddenFor(model => model.taskid)
+                <table>
+                    <tr>
+                        <td style="width: 200px;">
+                            @Html.LabelFor(model => model.subject)
+                        </td>
+                        <td style="width: 600px;">
+                            @Html.TextBoxFor(model => model.subject)
+                            @Html.ValidationMessageFor(model => model.subject)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.organisationid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.organisationid, Model.Organisations, new { style = "width: 160px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.projectid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.projectid, Model.Projects, new { style = "width: 160px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.ownerid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.ownerid, Model.Owner, new { style = "width: 160px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.prioritytypeid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.prioritytypeid, Model.PriorityTypeCode, new { style = "width: 160px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.statetypeid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.statetypeid, Model.StateTypeCode, new { style = "width: 160px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.statustypeid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.statustypeid, Model.StatusTypeCode, new { style = "width: 160px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.description)
+                        </td>
+                        <td>
+                            @Html.TextAreaFor(model => model.description)
+                            @Html.ValidationMessageFor(model => model.description)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.scheduledstart)
+                        </td>
+                        <td>
+                            @Html.Telerik().DateTimePickerFor(model => model.scheduledstart)
+                            @Html.ValidationMessageFor(model => model.scheduledstart)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.scheduledend)
+                        </td>
+                        <td>
+                            @Html.Telerik().DateTimePickerFor(model => model.scheduledend)
+                            @Html.ValidationMessageFor(model => model.scheduledend)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.scheduledstart)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.scheduleddurationminutes)
+                            @Html.ValidationMessageFor(model => model.scheduleddurationminutes)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <button type="submit" class="t-button t-state-default" style="color: #fff; background: #4D90FE; font-weight: bold;">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </text>)
+        .Width(600)
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Render();
+} 
+
+
+@{
+    Html.Telerik().ScriptRegistrar()
+        .OnDocumentReady(
+        @<text>
+            $('#task-@Model.taskid')
+                .click(function(e) {
+                    e.preventDefault();
+                    $('#task-details-@Model.taskid').data('tWindow').center().open();
+                });
+        </text>); 
+}

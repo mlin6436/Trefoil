@@ -1,0 +1,72 @@
+﻿@using Telerik.Web.Mvc.UI
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - CRM</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @(Html.Telerik()
+            .StyleSheetRegistrar()
+            .DefaultGroup(group => group
+                .Add("telerik.common.min.css")
+                .Add("telerik.transparent.min.css")
+                .Compress(true)))
+        @Styles.Render("~/Content/css")
+        @(Html.Telerik()
+            .ScriptRegistrar()
+            .DefaultGroup(group => group
+                .Add("telerik.all.min.js")
+                .Compress(true)))
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                    <li>@Html.ActionLink("Clients", "Index", "Client")</li>
+                    <li>@Html.ActionLink("Projects", "Index", "Project")</li>
+                    <li>@Html.ActionLink("Tasks", "Index", "Task")</li>
+                    <li>@Html.ActionLink("Suppliers", "Index", "Dashboard")</li>
+                    <li>@Html.ActionLink("Finance", "Index", "Dashboard")</li>
+                    <li>@Html.ActionLink("Reports", "Index", "Dashboard")</li>
+                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    <li style="color: #fff; float: right;">
+                        @if (Trefoil.Web.Helpers.Extensions.GetUserCredential() != null)
+                        {
+                            <text>
+                                <span style="display: inline-block; vertical-align: middle;">hello, @Trefoil.Web.Helpers.Extensions.GetUserCredential().fullname&nbsp;&nbsp;</span>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", style = "display: inline-block; vertical-align: middle;" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <img src="~/Images/logoff-icon.png" alt="Log Off" onclick="javascript:document.getElementById('logoutForm').submit()" width="20" height="20" style="cursor: pointer;" />
+                                }
+                            </text>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Login", "Login", "Account")
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="body">
+            <div class="content-wrap">
+                @RenderSection("featured", required: false)
+
+                <section class="clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+        <footer style="margin: 10px 0 0 0;">
+            <div class="content-wrap">
+                <p>&copy; @DateTime.Now.Year - Trefoil @System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString()</p>
+            </div>
+        </footer>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,146 @@
+﻿@using Telerik.Web.Mvc.UI
+@model Trefoil.Web.Models.ProjectDetailsModel
+
+@{
+    ViewBag.Title = Model.Project.subject + " Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2 style="text-align: left; float: left;">
+        <a class="client" style="color:#ffffff; text-decoration: none;" href="@Url.Action("Details", "Client", new {cid = Model.Project.organisationid, tab = 1})">Client</a>&nbsp;>
+        <span class="task">Project</span>&nbsp;>
+        @*<a class="project" style="color:#ffffff; text-decoration: none;" href="@Url.Action("Index", "Project")">Project</a>&nbsp;>*@
+        #@Model.Project.projectid&nbsp;@Model.Project.subject
+    </h2>
+</div>
+
+<style type="text/css">
+    .t-state-active, .t-header .t-state-active {
+        background: white;
+    }
+</style>
+
+<div class="body-main-left float-left">
+    @(Html.Telerik()
+        .TabStrip()
+        .Name("ProjectDetailsPanel")
+        .HtmlAttributes(new { style = "padding: 10px;" })
+        .Effects(fx => fx.Expand()
+            .Opacity()
+            .OpenDuration(200)
+            .CloseDuration(300)
+        )
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+                .Text("Description")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                             @Html.Partial("_ProjectDetailsPopup", Model.Project)
+                             <div style="width: 100%; height: 30px; padding: 0;">
+                                 <div id="project-@Model.Project.projectid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Edit</div>
+                             </div>
+                             <table style="padding: 0 0 10px 0;">        
+                                 <tr>
+                                     <td style="width: 200px;">Priority</td>
+                                     <td>@Model.Project.prioritytypename</td>
+                                 </tr>
+                                 <tr>
+                                     <td>State</td>
+                                     <td>@Model.Project.statetypename</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Status</td>
+                                     <td>@Model.Project.statustypename</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Budge</td>
+                                     <td>@String.Format("{0:C2}", @Model.Project.budget)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Total Cost</td>
+                                     <td>@String.Format("{0:C2}", @Model.Project.totalcost)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Total Charge</td>
+                                     <td>@String.Format("{0:C2}", @Model.Project.totalcharge)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Client</td>
+                                     <td>@Model.Project.organisationname</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Creation Date</td>
+                                     <td>@String.Format("{0:dd/MM/yyyy}", Model.Project.createdon)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Completion Date</td>
+                                     <td>@String.Format("{0:dd/MM/yyyy}", Model.Project.scheduledend)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Schedule Duration</td>
+                                     <td>@Model.Project.scheduleddurationhours h</td>
+                                 </tr>
+                             </table>
+                             @Model.Project.description
+                             @if (!String.IsNullOrEmpty(Model.Project.cancelledreason))
+                             {
+                                 <text><br />Cancelled reason: @Model.Project.cancelledreason</text>
+                             }
+                             @if (!String.IsNullOrEmpty(Model.Project.rejectedreason))
+                             {
+                                 <text><br />Rejected reason@Model.Project.rejectedreason</text>
+                             }
+                             @Html.Partial("_NoteDetailsPopup", Model.NewNote)
+                             <div style="width: 100%; height: 30px; padding: 15px 5px 5px 0;">
+                                 <div id="note-@Model.NewNote.noteid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Note</div>
+                             </div>
+                             @foreach (var note in Model.Notes)
+                             {
+                                 <div style="padding: 0 0 5px 0;">@note.description</div>
+                             }
+                         </div>
+                     </text>);
+            tabstrip.Add()
+                .Text("Tasks")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                             @Html.Partial("_TaskDetailsPopup", Model.NewTask)
+                             <div style="width: 100%; height: 30px; padding: 5px 5px 5px 0;">
+                                 <div id="task-@Model.NewTask.taskid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Add New Task</div>
+                             </div>
+                             @Html.Partial("_TaskList", Model.Tasks)
+                         </div>
+                     </text>);
+            tabstrip.Add()
+                .Text("Documents")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                         </div>
+                     </text>);
+            tabstrip.Add()
+                .Text("Notes")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                         </div>
+                     </text>);
+        })
+        .SelectedIndex(ViewBag.TabIndex ?? 0)
+    )
+</div>
+
+<div class="body-main-right float-left">
+    <div style="background: #E5E5E5;">
+        <div style="width: 100%; padding: 10px 0 10px 10px;"><strong>Project Owner</strong></div>
+        @Html.Partial("_ContactDetails", Model.Owner)
+    </div>
+    <div>
+        <div style="width: 100%; padding: 10px 0 10px 10px;"><strong>Main Contact</strong></div>
+        @Html.Partial("_ContactDetails", Model.Contact)
+    </div>
+</div>

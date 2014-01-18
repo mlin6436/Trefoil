@@ -1,0 +1,18 @@
+﻿@model Trefoil.Web.Models.TaskIndexModel
+
+@{
+    ViewBag.Title = "Tasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2 style="text-align: left; float: left;">Tasks</h2>
+    @*<div id="task-@Model.NewTask.taskid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: right;">Add New Task</div>
+    @Html.Partial("_TaskDetailsPopup", Model.NewTask)*@
+</div>
+
+<div class="body-main">
+    <div class="body-main-inner">
+        @Html.Partial("_TaskList", Model.Tasks)
+    </div>
+</div>

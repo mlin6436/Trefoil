@@ -1,0 +1,237 @@
+﻿@using Telerik.Web.Mvc.UI
+@model Trefoil.Web.Models.OrganisationModel
+
+@{  
+    Html.Telerik().Window()
+        .Name(String.Format("client-details-{0}", Model.organisationid))
+        .Title("Client Details")
+        .Content(
+        @<text>
+            @using (Html.BeginForm("EditClient", "Client", FormMethod.Post, new { model = Model }))
+            {
+                @Html.HiddenFor(model => model.organisationid)
+                <table>
+                    <tr>
+                        <td style="width: 180px;">
+                            @Html.LabelFor(model => model.name)
+                        </td>
+                        <td style="width: 600px;">
+                            @Html.TextBoxFor(model => model.name)
+                            @Html.ValidationMessageFor(model => model.name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.businessstatusid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.businessstatusid, Model.BusinessStatusCode)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.businesstypeid)
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.businesstypeid, Model.BusinessTypeCode)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_name)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_name)
+                            @Html.ValidationMessageFor(model => model.address1_name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_line1)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_line1)
+                            @Html.ValidationMessageFor(model => model.address1_line1)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_line2)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_line2)
+                            @Html.ValidationMessageFor(model => model.address1_line2)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_line3)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_line3)
+                            @Html.ValidationMessageFor(model => model.address1_line3)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_city)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_city)
+                            @Html.ValidationMessageFor(model => model.address1_city)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_county)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_county)
+                            @Html.ValidationMessageFor(model => model.address1_county)
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_country)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_country)
+                            @Html.ValidationMessageFor(model => model.address1_country)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_postalcode)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_postalcode)
+                            @Html.ValidationMessageFor(model => model.address1_postalcode)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_postofficebox)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_postofficebox)
+                            @Html.ValidationMessageFor(model => model.address1_postofficebox)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_fax)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_fax)
+                            @Html.ValidationMessageFor(model => model.address1_fax)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_telephone1)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_telephone1)
+                            @Html.ValidationMessageFor(model => model.address1_telephone1)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_telephone2)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_telephone2)
+                            @Html.ValidationMessageFor(model => model.address1_telephone2)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.address1_telephone3)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.address1_telephone3)
+                            @Html.ValidationMessageFor(model => model.address1_telephone3)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.website)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.website)
+                            @Html.ValidationMessageFor(model => model.website)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.social_facebook)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.social_facebook)
+                            @Html.ValidationMessageFor(model => model.social_facebook)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.social_twitter)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.social_twitter)
+                            @Html.ValidationMessageFor(model => model.social_twitter)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.social_linkedin)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.social_linkedin)
+                            @Html.ValidationMessageFor(model => model.social_linkedin)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.social_youtube)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.social_youtube)
+                            @Html.ValidationMessageFor(model => model.social_youtube)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.social_vimeo)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.social_vimeo)
+                            @Html.ValidationMessageFor(model => model.social_vimeo)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <button type="submit" class="t-button t-state-default" style="color: #fff; background: #4D90FE; font-weight: bold;">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </text>)
+        .Width(600)
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Render();
+} 
+
+@{
+    Html.Telerik().ScriptRegistrar()
+        .OnDocumentReady(
+        @<text>
+            $('#client-@Model.organisationid')
+                .click(function(e) {
+                    e.preventDefault();
+                    $('#client-details-@Model.organisationid').data('tWindow').center().open();
+                });
+        </text>); 
+}

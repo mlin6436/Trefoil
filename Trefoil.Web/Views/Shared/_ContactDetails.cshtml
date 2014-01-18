@@ -1,0 +1,76 @@
+﻿@model Trefoil.Web.Models.UserModel
+
+<table style="width: 100%; padding: 7px;">
+    <tr>
+        <td style="width: 87px;" rowspan="4">
+            <img src="~/Images/thumb-metro-icon.png" width="80" height="80" />
+        </td>
+        <td>
+            @if (!String.IsNullOrEmpty(Model.title))
+            { 
+                <text>
+                    <strong style="margin: 0 2px 0 0; text-align: right; float: left; text-align: left;">@Model.title</strong>
+                </text>
+            }
+            <strong style="margin: 0 2px 0 0; text-align: right; float: left; text-align: left;">@Model.fullname</strong>
+            @if (!String.IsNullOrEmpty(Model.social_facebook))
+            {
+                <text>
+                    <a style="width: 15px; width: 15px; display: block; text-align: right; float: left;" target="_blank" href='http://@Model.social_facebook'>
+                        <img src="~/Images/facebook-icon.png" width="15" height="15" />
+                    </a>
+                </text>
+            }
+            @if (!String.IsNullOrEmpty(Model.social_twitter))
+            {
+                <text>
+                    <a style="width: 15px; width: 15px; display: block; text-align: right; float: left;" target="_blank" href='http://@Model.social_twitter'>
+                        <img src="~/Images/twitter-icon.png" width="15" height="15" />
+                    </a>
+                </text>
+            }
+            @if (!String.IsNullOrEmpty(Model.social_linkedin))
+            {
+                <text>
+                    <a style="width: 15px; width: 15px; display: block; text-align: right; float: left;" target="_blank" href='http://@Model.social_linkedin'>
+                        <img src="~/Images/linkedin-icon.png" width="15" height="15" />
+                    </a>
+                </text>
+            }
+            @if (!String.IsNullOrEmpty(Model.social_youtube))
+            {
+                <text>
+                    <a style="width: 15px; width: 15px; display: block; text-align: right; float: left;" target="_blank" href='http://@Model.social_youtube'>
+                        <img src="~/Images/youtube-icon.png" width="15" height="15" />
+                    </a>
+                </text>
+            }
+            @if (!String.IsNullOrEmpty(Model.social_vimeo))
+            {
+                <text>
+                    <a style="width: 15px; width: 15px; display: block; text-align: right; float: left;" target="_blank" href='http://@Model.social_vimeo'>
+                        <img src="~/Images/vimeo-icon.png" width="15" height="15" />
+                    </a>
+                </text>
+            }
+            <img style="margin-left: 2px; display: block; cursor: pointer; text-align: right; float: left;" id="@String.Format("contact-{0}", Model.systemuserid)" src="~/Images/metro-icon-edit.png" width="15" height="15" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.jobtitle&nbsp;|&nbsp;@Model.businessfunctionname
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.mobilephone
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <a target="_blank" href='mailto:@Model.emailaddress'>
+                @Model.emailaddress
+            </a>
+        </td>
+    </tr>
+</table>

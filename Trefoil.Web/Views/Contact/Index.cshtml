@@ -1,0 +1,46 @@
+﻿@using Telerik.Web.Mvc.UI
+@model List<Trefoil.Web.Models.UserOrganisationModel>
+
+@{
+    ViewBag.Title = "Contacts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2>Contacts</h2>
+    <div>@Html.ActionLink("Create New Contact", "Details")</div>
+</div>
+
+<div class="body-main">
+    @(Html.Telerik().Grid(Model)
+        .Name("ContactGrid")
+        .DataKeys(keys =>
+            keys.Add(x => x.UserModel.systemuserid)
+        )
+        .Columns(column =>
+        {
+            column.Bound(m => m.UserModel.systemuserid).Title("Contact ID");
+            column.Bound(m => m.UserModel.title).Title("Title");
+            column.Bound(m => m.UserModel.firstname).Title("First Name");
+            column.Bound(m => m.UserModel.lastname).Title("Last Name");
+            column.Bound(m => m.UserModel.nickname).Title("Nick Name");
+            column.Bound(m => m.OrganisationModel.name).Title("Company Name");
+            column.Bound(m => m.UserModel.jobtitle).Title("Job Title");
+            column.Bound(m => m.UserModel.address1_telephone1).Title("Telephone 1");
+            column.Bound(m => m.UserModel.mobilephone).Title("Mobile");
+            column.Bound(m => m.UserModel.emailaddress).Title("Email");
+            column.Bound(m => m.UserModel.createdon).Title("Created On");
+            column.Command(command => 
+                command.Custom("Edit")
+                    .Text("Edit")
+                    .DataRouteValues(route => route.Add(o => o.UserModel.systemuserid).RouteKey("systemuserid"))
+                    .Action("Details", "Contact")
+                    .SendDataKeys(false)
+            ).Width(200).Title("");
+        })
+        .Sortable()
+        .Pageable(pageable => pageable.PageSize(25))
+        .Filterable(filterable => filterable.Enabled(true))
+    )
+</div>
+

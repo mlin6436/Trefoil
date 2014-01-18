@@ -1,0 +1,18 @@
+﻿@model Trefoil.Web.Models.ProjectIndexModel
+
+@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2 style="text-align: left; float: left;">Project</h2>
+    @*<div id="project-@Model.NewProject.projectid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: right;">Add New Project</div>
+    @Html.Partial("_ProjectDetailsPopup", Model.NewProject)*@
+</div>
+
+<div class="body-main">
+    <div class="body-main-inner">
+        @Html.Partial("_ProjectList", Model.Projects)
+    </div>
+</div>

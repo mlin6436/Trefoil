@@ -1,0 +1,33 @@
+﻿@using Telerik.Web.Mvc.UI
+
+@{Html.Telerik().PanelBar()
+    .Name("PanelBar")
+    .HtmlAttributes(new { style = "width: 100%;" })
+    .SelectedIndex(0)
+    .Items(item =>
+    {
+        item.Add()
+            .Text("Business")
+            .ImageUrl("~/Images/library-icon.png")
+            .ImageHtmlAttributes(new { style = "width: 20px; height: 20px;", alt = "Business" })
+            .Items(subItem =>
+            {
+                subItem.Add()
+                        .Text("Business Status")
+                        .Action("BusinessStatus", "Admin")
+                        .ImageUrl("~/Images/library-icon.png")
+                        .ImageHtmlAttributes(new { style = "width: 15px; height: 15px;", alt = "Business Status" });
+                subItem.Add()
+                        .Text("Business Type")
+                        .Action("BusinessType", "Admin")
+                        .ImageUrl("~/Images/library-icon.png")
+                        .ImageHtmlAttributes(new { style = "width: 15px; height: 15px;", alt = "Business Type" });
+                subItem.Add()
+                        .Text("Business Function")
+                        .Action("BusinessFunction", "Admin")
+                        .ImageUrl("~/Images/library-icon.png")
+                        .ImageHtmlAttributes(new { style = "width: 15px; height: 15px;", alt = "Business Function" });
+            });
+    })
+    .Render(); 
+}

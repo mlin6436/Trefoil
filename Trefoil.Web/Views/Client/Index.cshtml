@@ -1,0 +1,19 @@
+﻿@model Trefoil.Web.Models.OrganisationIndexModel
+
+@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2 style="text-align: left; float: left;">Clients</h2>
+        <div id="client-@Model.NewOrganisation.organisationid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: right;">Add New Client</div>
+    @Html.Partial("_ClientDetailsPopup", Model.NewOrganisation)
+</div>
+
+<div class="body-main">
+    <div class="body-main-inner">
+        @Html.Partial("_ClientList", Model.Organisations)
+    </div>
+</div>
+

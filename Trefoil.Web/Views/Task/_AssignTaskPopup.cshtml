@@ -1,0 +1,50 @@
+﻿@using Telerik.Web.Mvc.UI
+@model Trefoil.Web.Models.TaskModel
+
+@{
+    Html.Telerik().Window()
+        .Name(@String.Format("contact-details-{0}", Model.ownerid))
+        .Title("Contact Details")
+        .Content(
+        @<text>
+            @using (Html.BeginForm("AssignTask", "Task", FormMethod.Post, new { model = Model }))
+            {
+                @Html.HiddenFor(model => model.taskid)
+                <table>
+                    <tr>
+                        <td>
+                            @Html.Label("Assignment")
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.ownerid, Model.Owner, new { style="width: 200px;" })
+                            @Html.ValidationMessageFor(model => model.ownerid)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <button type="submit" class="t-button t-state-default" style="color: #fff; background: #4D90FE; font-weight: bold;">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </text>)
+        .Width(400)
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Render(); 
+}
+        
+@{
+    Html.Telerik().ScriptRegistrar()
+        .OnDocumentReady(
+        @<text>
+            $('#contact-@Model.ownerid')
+                .click(function(e) {
+                    e.preventDefault();
+                    $('#contact-details-@Model.ownerid').data('tWindow').center().open();
+            });
+        </text>); 
+}

@@ -1,0 +1,46 @@
+﻿@using Telerik.Web.Mvc.UI
+@model List<Trefoil.Web.Models.BusinessTypeModel>
+
+@{
+    ViewBag.Title = "Business Type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2 style="text-align: left; float: left;">Business Type</h2>    
+</div>
+
+<div class="body-main">
+    <div class="body-main-left-admin float-left">
+        @Html.Partial("PartialPanelBar")
+    </div>
+    
+    <div class="body-main-right-admin float-left">
+        @(Html.Telerik().Grid(Model)
+            .Name("BusinessTypeGrid")
+            .DataKeys(keys =>
+            {
+                keys.Add(x => x.businesstypeid);
+            })
+            .ToolBar(commands => commands.Insert())
+            .DataBinding(dataBinding => dataBinding.Server()
+                .Select("BusinessType", "Admin")
+                .Insert("InsertBusinessType", "Admin")
+                .Update("UpdateBusinessType", "Admin")
+            )
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.businesstypeid).Width(200).Title("Business Type ID").ReadOnly();
+                columns.Bound(c => c.name).Width(400).Title("Business Type Name");
+                columns.Bound(c => c.createdon).Width(200).Title("Created On").ReadOnly();
+                columns.Bound(c => c.isdisabled).Width(200).Title("Archived");
+                columns.Command(commands =>
+                {
+                    commands.Edit();
+                });
+            })
+            .Sortable()
+            .Pageable(pageable => pageable.PageSize(25))
+            .Filterable(filterable => filterable.Enabled(true)))
+    </div>
+</div>

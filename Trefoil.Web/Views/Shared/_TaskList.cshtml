@@ -1,0 +1,144 @@
+﻿@using Telerik.Web.Mvc.UI
+@model List<Trefoil.Web.Models.TaskModel>
+
+@(Html.Telerik().Grid(Model)
+    .Name("TaskList")
+    .HtmlAttributes(new { style="background: white" })
+    .DataKeys(keys => 
+        keys.Add(x => x.taskid)
+    )
+    .Columns(columns =>
+    {
+        columns.Bound(m => m.taskid).Title("#ID");
+        columns.Bound(m => m.subject).Width(300).Title("Name");
+        columns.Bound(m => m.prioritytypename).Title("Priority");
+        columns.Bound(m => m.ownername).Title("Task Owner");
+        columns.Bound(m => m.scheduledstart).Title("Schedule Start");
+        columns.Bound(m => m.scheduledend).Title("Schedule End");
+        columns.Bound(m => m.scheduleddurationhours).Format("{0} h").Title("Effort");
+        columns.Bound(m => m.actualdurationhours).Format("{0} h").Title("Time Spent");
+        columns.Bound(m => m.progress).Format("{0:P0}").Title("Progress");
+        columns.Bound(m => m.statetypename).Title("State");
+        columns.Bound(m => m.statustypename).Title("Status");
+    })
+    .RowAction(row =>
+    {
+        if (row.DataItem.scheduledend < DateTime.UtcNow.AddDays(-7) && row.DataItem.statustypename.ToLower().Equals("live") && !row.DataItem.statetypename.ToLower().Equals("done"))
+        {
+            row.HtmlAttributes["style"] = "background:#FAAFBE;";
+        }
+        else if (row.DataItem.scheduledend < DateTime.UtcNow && row.DataItem.statustypename.ToLower().Equals("live") && !row.DataItem.statetypename.ToLower().Equals("done"))
+        {
+            row.HtmlAttributes["style"] = "background:#FFE2A5;";
+        }
+    })
+    .ClientEvents(events => 
+        events.OnRowSelect("onRowSelectTask")
+    )
+    .Selectable()
+    .Sortable()
+    .Pageable(pageable => pageable.PageSize(25))
+    .Filterable(filterable => filterable.Enabled(true))
+)
+
+<script type="text/javascript">
+    function onRowSelectTask(e) {
+        var row = e.row;
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Content("~")" + "Task/Details",
+            data: { pid: row.cells[0].innerHTML },
+            dataType: "html",
+            success: function (response) {
+                window.location = "@Url.Content("~")" + "Task/Details?tid=" + row.cells[0].innerHTML;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                window.location = "@Url.Content("~")" + "Task/Index";
+            }
+        });
+    }
+</script>
+
+@if (Model.Any())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TaskList th:contains(Priority)")
+                .find(".t-grid-filter")
+                .click(function (e) {
+                    var filterIcon = $(this);
+
+                    var selectString = "<select>";
+                    @foreach (var element in Model.FirstOrDefault().PriorityTypeCode)
+	                {
+                        <text>selectString += "<option>@element.Text</option>";</text>
+                    }
+                    selectString += "</select>";
+                    var select = $(selectString);
+
+                    setTimeout(function () {
+                        var filterMenu = filterIcon.data("filter");
+                        filterMenu.find(":text").first().replaceWith(select);
+                    });
+                });
+
+            $("#TaskList th:contains(State)")
+                .find(".t-grid-filter")
+                .click(function (e) {
+                    var filterIcon = $(this);
+
+                    var selectString = "<select>";
+                    @foreach (var element in Model.FirstOrDefault().StateTypeCode)
+	                {
+                        <text>selectString += "<option>@element.Text</option>";</text>
+                    }
+                    selectString += "</select>";
+                    var select = $(selectString);
+
+                    setTimeout(function () {
+                        var filterMenu = filterIcon.data("filter");
+                        filterMenu.find(":text").first().replaceWith(select);
+                    });
+                });
+
+            $("#TaskList th:contains(Status)")
+                .find(".t-grid-filter")
+                .click(function (e) {
+                    var filterIcon = $(this);
+
+                    var selectString = "<select>";
+                    @foreach (var element in Model.FirstOrDefault().StatusTypeCode)
+	                {
+                        <text>selectString += "<option>@element.Text</option>";</text>
+                    }
+                    selectString += "</select>";
+                    var select = $(selectString);
+
+                    setTimeout(function () {
+                        var filterMenu = filterIcon.data("filter");
+                        filterMenu.find(":text").first().replaceWith(select);
+                    });
+                });
+
+            $("#TaskList th:contains(Task Owner)")
+                .find(".t-grid-filter")
+                .click(function (e) {
+                    var filterIcon = $(this);
+
+                    var selectString = "<select>";
+                    @foreach (var element in Model.FirstOrDefault().Owner)
+	                {
+                        <text>selectString += "<option>@element.Text</option>";</text>
+                    }
+                    selectString += "</select>";
+                    var select = $(selectString);
+
+                    setTimeout(function () {
+                        var filterMenu = filterIcon.data("filter");
+                        filterMenu.find(":text").first().replaceWith(select);
+                    });
+                });
+        });
+    </script>
+}

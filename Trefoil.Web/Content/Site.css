@@ -1,0 +1,450 @@
+﻿html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #fff !important;
+    color: #333;
+    font-size: .85em;
+    font-family: Arial, Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #333;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: underline;
+}
+
+    a:link, a:visited,
+    a:active, a:hover {
+        color: #333;
+    }
+
+    a:hover {
+        background-color: #c7d1d6;
+    }
+
+header, footer, hgroup,
+nav, section {
+    display: block;
+}
+
+mark {
+    background-color: #a6dbed;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-fix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+h1, h2, h3,
+h4, h5, h6, p {
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+    h5 a:link, h5 a:visited, h5 a:active {
+        padding: 0;
+        text-decoration: none;
+    }
+
+.clear {
+    clear: both;
+}
+
+.status-tag {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #4b4b4b;
+    padding: 2px 5px;
+    font-size: 10px;
+    color: white;
+    vertical-align: middle;
+}
+
+.live {
+    background: #42e800;
+}
+
+.prospective {
+    background: #f69e00;
+}
+
+.historic {
+    background: #4b4b4b;
+}
+
+.cancelled {
+    background: #FFEF00;
+}
+
+.rejected {
+    background: #ff585d;
+}
+
+.live {
+    background: #42e800;
+}
+
+.complete {
+    background: #009AFF;
+}
+
+.proposal {
+    background: #ff585d;
+}
+
+.high {
+    background: #ff585d;
+}
+
+.normal {
+    background: #f69e00;
+}
+
+.low {
+    background: #42e800;
+}
+
+.task {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #4b4b4b;
+    padding: 2px 5px;
+    font-size: 14px;
+    color: white;
+    vertical-align: middle;
+}
+
+.project {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #4b4b4b;
+    padding: 2px 5px;
+    font-size: 14px;
+    color: white;
+    vertical-align: middle;
+}
+
+.client {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #4b4b4b;
+    padding: 2px 5px;
+    font-size: 14px;
+    color: white;
+    vertical-align: middle;
+}
+
+/* main layout
+----------------------------------------------------------*/
+header {
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    background: #333;
+    width: 100%;
+    height: 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1200;
+    display: block;
+}
+
+#body {
+    margin: 45px 0 0 0;
+    width: 100%;
+    display: block;
+}
+
+.content-wrap {
+    margin: 0 15px;
+    padding: 0;
+}
+
+footer {
+    clear: both;
+    font-size: .8em;
+    text-align: center;
+}
+
+/* menu
+----------------------------------------------------------*/
+ul#menu {
+    margin: 5px 0 0 10px;
+    padding: 0;
+    background: #333;
+}
+
+    ul#menu li {
+        margin: 0 5px 0 0;
+        display: inline;
+        list-style: none;
+    }
+
+        ul#menu li a {
+            background: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        ul#menu li a:hover {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+/* main body
+----------------------------------------------------------*/
+.body-top {
+    width: 100%; 
+    margin: 0 0 10px 0;
+    float: left;
+    clear: both;
+}
+
+.body-main {
+    background: #E5E5E5;
+    width: 100%; 
+    float: left;
+}
+
+    .body-main .body-main-inner {
+        padding: 10px;
+    }
+
+.body-main-left {
+    background: #E5E5E5;
+    margin: 0 10px 0 0;
+    width: 76%;
+    min-width: 500px;
+}
+
+.body-main-right {
+    border: 2px solid #DEDEDE; 
+    width: 23%;
+}
+
+.body-main-left-admin {
+    width: 18%;
+    margin: 0 15px 0 0;
+}
+
+.body-main-right-admin {
+    width: 81%;
+    min-width: 500px;
+}
+
+/********************
+*   Mobile Styles   *
+********************/
+@media only screen and (max-width: 850px) {
+
+    /* header
+    ----------------------------------------------------------*/
+    header .float-left,
+    header .float-right {
+        float: none;
+    }
+
+    /* logo */
+    header .site-title {
+        margin: 10px;
+        text-align: center;
+    }
+
+    /* login */
+    #login {
+        font-size: .85em;
+        margin: 0 0 12px;
+        text-align: center;
+    }
+
+        #login ul {
+            margin: 5px 0;
+            padding: 0;
+        }
+
+        #login li {
+            display: inline;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #login a {
+            background: none;
+            color: #999;
+            font-weight: 600;
+            margin: 2px;
+            padding: 0;
+        }
+
+        #login a:hover {
+            color: #333;
+        }
+
+    /* menu */
+    nav {
+        margin-bottom: 5px;
+    }
+
+    ul#menu {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        ul#menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+
+    /* main layout
+    ----------------------------------------------------------*/
+    .main-content,
+    .featured + .main-content {
+        background-position: 10px 0;
+    }
+
+    .content-wrapper {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .featured .content-wrapper {
+        padding: 10px;
+    }
+
+    /* page content */
+    article, aside {
+        float: none;
+        width: 100%;
+    }
+
+    /* ordered list */
+    ol.round {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        ol.round li {
+            padding-left: 10px;
+            margin: 25px 0;
+        }
+
+            ol.round li.zero,
+            ol.round li.one,
+            ol.round li.two,
+            ol.round li.three,
+            ol.round li.four,
+            ol.round li.five,
+            ol.round li.six,
+            ol.round li.seven,
+            ol.round li.eight,
+            ol.round li.nine {
+                background: none;
+            }
+
+     /* features */
+     section.feature {
+        float: none;
+        padding: 10px;
+        width: auto;
+     }
+
+        section.feature img {
+            color: #999;
+            content: attr(alt);
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+    /* forms */
+    input {
+        width: 90%;
+    }
+
+    /* login page */
+    #loginForm {
+        border-right: none;
+        float: none;
+        width: auto;
+    }
+
+        #loginForm .validation-error {
+            display: block;
+            margin-left: 15px;
+        }
+
+    #socialLoginForm {
+        margin-left: 0;
+        float: none;
+        width: auto;
+    }
+
+
+    /* footer
+    ----------------------------------------------------------*/
+    footer .float-left,
+    footer .float-right {
+        float: none;
+    }
+
+    footer {
+        text-align: center;
+        height: auto;
+        padding: 10px 0;
+    }
+
+        footer p {
+            margin: 0;
+        }
+}

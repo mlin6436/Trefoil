@@ -1,0 +1,120 @@
+﻿@using Telerik.Web.Mvc.UI
+@model Trefoil.Web.Models.TaskDetailsModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body-top">
+    <h2 style="text-align: left; float: left;">
+        <a class="client" style="color:#ffffff; text-decoration: none;" href="@Url.Action("Details", "Client", new {cid = Model.Task.organisationid, tab = 2})">Client</a>&nbsp;>
+        <a class="project" style="color:#ffffff; text-decoration: none;" href="@Url.Action("Details", "Project", new {pid = Model.Task.projectid, tab = 1})">Project</a>&nbsp;>
+        <span class="task">Task</span>&nbsp;>
+        @*<a class="task" style="color:#ffffff; text-decoration: none;" href="@Url.Action("Index", "Task")">Task</a>&nbsp;>*@
+        #@Model.Task.taskid&nbsp;@Model.Task.subject
+    </h2>
+</div>
+
+<style type="text/css">
+    .t-state-active, .t-header .t-state-active {
+        background: white;
+    }
+</style>
+
+<div class="body-main-left float-left">
+    @(Html.Telerik()
+        .TabStrip()
+        .Name("TaskDetailsPanel")
+        .HtmlAttributes(new { style = "padding: 10px;" })
+        .Effects(fx => fx.Expand()
+            .Opacity()
+            .OpenDuration(200)
+            .CloseDuration(300)
+        )
+        .Items(tabstrip =>
+        {
+            tabstrip.Add()
+                .Text("Description")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                             @Html.Partial("_TaskDetailsPopup", Model.Task)
+                             <div style="width: 100%; height: 30px; padding: 0;">
+                                 <div id="task-@Model.Task.taskid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Edit</div>
+                             </div>
+                             <table style="padding: 0 0 10px 0;">        
+                                 <tr>
+                                     <td style="width: 200px;">Priority</td>
+                                     <td>@Model.Task.prioritytypename</td>
+                                 </tr>
+                                 <tr>
+                                     <td>State</td>
+                                     <td>@Model.Task.statetypename</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Status</td>
+                                     <td>@Model.Task.statustypename</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Project</td>
+                                     <td>@Model.Task.projectname</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Creation Date</td>
+                                     <td>@String.Format("{0:dd/MM/yyyy}", Model.Task.createdon)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Completion Date</td>
+                                     <td>@String.Format("{0:dd/MM/yyyy}", Model.Task.scheduledend)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Schedule Duration</td>
+                                     <td>@Model.Task.scheduleddurationhours h</td>
+                                 </tr>
+                             </table>
+                             @Html.Partial("_NoteDetailsPopup", Model.NewNote)
+                             <div style="width: 100%; height: 30px; padding: 15px 5px 5px 0;">
+                                 <div id="note-@Model.NewNote.noteid" class="t-button" style="color: #fff; background: #4D90FE; font-weight: bold; text-align: right; float: left;">Note</div>
+                             </div>
+                             @foreach (var note in Model.Notes)
+                             {
+                                 <div style="padding: 0 0 5px 0;">@note.description</div>
+                             }
+                             @Model.Task.description
+                         </div>
+                     </text>);
+            tabstrip.Add()
+                .Text("Documents")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                         </div>
+                     </text>);
+            tabstrip.Add()
+                .Text("Notes")
+                .Content(
+                    @<text>
+                         <div style="padding: 10px 0;">
+                         </div>
+                     </text>);
+        })
+        .SelectedIndex(0)
+    )
+</div>
+
+<div class="body-main-right float-left">
+    @Html.Partial("_AssignTaskPopup", Model.NewTask)
+    <div style="background: #fff; width: 100%; float: left;">
+        <div id="contact-@Model.NewTask.ownerid" class="t-button" style="color: #fff; background: #4D90FE; margin: 5px; font-weight: bold; text-align: right; float: right;">Assignment</div>
+    </div>
+
+    <div>
+        @foreach (var assignedUser in Model.AssignedUsers)
+        {
+            <div @if (Model.AssignedUsers.IndexOf(assignedUser) % 2 == 0) { <text>style="background: #E5E5E5;"</text> }>
+                @Html.Partial("_ContactDetails", assignedUser)
+            </div>
+        }
+    </div>
+</div>
