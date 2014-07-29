@@ -1,4 +1,4 @@
 Trefoil
 =======
 
-A CRM system framework
+A web-based CRM system.
